@@ -1,0 +1,29 @@
+dotnet add Microsoft.AspnetCore.ResponseCompression --version 2.0.1
+
+Middlewares
+
+services.AddMvc();
+
+services.AddResponseCache(); //cacheia tudo
+services.AddResponseCompression(); //comprime todas as requisições
+
+app.UseResponseCompression();
+
+OpenApi
+
+Documentação swagger: dotnet add package Swashbuckle.AspNetCore
+
+
+services.AddSwaggerGen(x=> {
+	x.SwaggerDoc("v1", new Info {Title ="My api", Version = "v1"});
+});
+
+app.UseSwagger();//json
+
+
+//html
+app.UseSwaggerUi(c=>
+{
+	c.SwaggerEndpoint("/swagger/v1/swagger.json", "My api v1");
+});
+
